@@ -1776,8 +1776,8 @@ MonoBehaviour:
     chained: 1
   - position: {x: 0.4763159, y: 2.8614986, z: -0.21683934}
     rotation: {x: 0.07617821, y: -0.4051766, z: -0.017798878, w: 0.91088533}
-    handleprev: {x: -3.2195525, y: -0.088258505, z: -7.363196}
-    handlenext: {x: 3.2195525, y: 0.088258505, z: 7.363196}
+    handleprev: {x: -4.347669, y: -0.5420711, z: -11.358737}
+    handlenext: {x: 4.347669, y: 0.5420711, z: 11.358737}
     curveTypeRotation: 0
     rotationCurve:
       serializedVersion: 2
