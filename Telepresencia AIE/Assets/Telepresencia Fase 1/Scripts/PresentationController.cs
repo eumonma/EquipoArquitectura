@@ -9,6 +9,7 @@ public class PresentationController : MonoBehaviour
     public GameObject slide1;
     public GameObject slide2;
     public GameObject CanvasSlides;
+    public GameObject CanvasFase1;
 
     //public GameObject Trans2a3;
     public CPC_CameraPath pathTrans2a3;
@@ -79,10 +80,11 @@ public class PresentationController : MonoBehaviour
                 IniciarPaso2();
                 break;
             case 2:
-                FinalizarPaso2();
-                TransicionPasos2a3(10);
-                PrepararPaso3();
-                IniciarPaso3();
+                //FinalizarPaso2();
+                //TransicionPasos2a3(10);
+                StartCoroutine("Paso2a3", 10);
+                //PrepararPaso3();
+                //IniciarPaso3();
                 break;
         }
             
@@ -129,7 +131,7 @@ public class PresentationController : MonoBehaviour
         print("Preparar Paso 1...");
 
         momentoPresentacion = 1;
-        slide1.SetActive(true);
+        CanvasSlides.SetActive(true);
         
     }
 
@@ -147,14 +149,16 @@ public class PresentationController : MonoBehaviour
     void PrepararPaso3()
     {
         print("Preparar Paso 3...");
-
+ 
         momentoPresentacion = 3;
+        CanvasFase1.SetActive(true);
     }
 
     void IniciarPaso1()
     {
 
         print("Iniciar Paso 1...");
+        slide1.SetActive(true);
 
     }
 
@@ -177,18 +181,21 @@ public class PresentationController : MonoBehaviour
     {
         print("Finalizar Paso 1...");
         slide1.SetActive(false);
+        CanvasSlides.SetActive(false);
     }
 
     void FinalizarPaso2()
     {
         print("Finalizar Paso 2...");
+        
         slide2.SetActive(false);
+        CanvasSlides.SetActive(false);
     }
 
     void FinalizarPaso3()
     {
         print("Finalizar Paso 3...");
-
+        CanvasFase1.SetActive(false);
     }
 
     void TransicionPasos1a2()
@@ -215,6 +222,22 @@ public class PresentationController : MonoBehaviour
 
     }
 
+
+    IEnumerator Paso2a3(int tiempo)
+    {
+
+        print("Transición Paso 2 a 3 ...");
+
+        FinalizarPaso2();
+
+        pathTrans2a3.PlayPath(tiempo);
+
+        yield return new WaitUntil(() => !pathTrans2a3.IsPlaying());
+
+        PrepararPaso3();
+        IniciarPaso3();
+
+    }
 
 
     IEnumerator Paso3a2(int tiempo)
